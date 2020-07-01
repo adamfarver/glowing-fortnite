@@ -11,19 +11,19 @@ const mongoose = require('mongoose')
 const Project = require('./models/Project')
 
 const dbConnect = async () => {
-	try {
-		await mongoose.connect('mongodb://localhost:27017/timetracker', {
+await mongoose.connect('mongodb://localhost:27017/timetracker', {
 			useNewUrlParser: true,
-		}).then(console.log("DB connected and ready."))
-	} catch (error) {
-		const err = new Error(error)
-		console.error(err)
-	}
+			useUnifiedTopology: true,
+			autoIndex: false,
+			connectTimeoutMS: 4000
+		}).catch(err => console.log('connection error'))
+return null
 }
 dbConnect()
 
 
 	const newproj = new Project({
-		data: {testData: true}
+name:'adam'
 			})
-newproj.save()
+
+module.exports = {dbConnect}

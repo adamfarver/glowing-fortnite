@@ -28,21 +28,21 @@ before(function (done) {
 	done()
 })
 
-beforeEach(function (done) {
-	mongoose.connection.createCollection('projects')
-	done()
-})
-
-after(function (done) {
-	// Before test, drop collection.
-	mongoose.connection.dropCollection('projects')
-	done()
-})
+//beforeEach(function (done) {
+//	mongoose.connection.createCollection('projects')
+//	done()
+//})
+//
+//after(function (done) {
+//	// Before test, drop collection.
+//	mongoose.connection.dropCollection('projects')
+//	done()
+//})
 
 // Start Tests
 // DB Tests
-describe('Database Tests\n', () => {
-	it('Save To DB', done => {
+describe('Database Tests\n', function () {
+	it('Save To DB', function (done) {
 		const project = new Project({
 			name: 'Project 1',
 		})
@@ -52,16 +52,18 @@ describe('Database Tests\n', () => {
 			done()
 		})
 	})
-	it('Retrieve Data From DB', done => {
-		assert.equal(2, 2)
-		done()
+	it('Retrieve Data From DB', function (done) {
+		Project.findOne({ name: 'Project 1' }).then(function (result) {
+			assert(result.name === 'Project 1')
+			done()
+		})
 	})
-	it('Update Data From DB', done => {
-		assert.equal(2, 2)
-		done()
-	})
-	it('Delete Data From DB', done => {
-		assert.equal(2, 2)
-		done()
-	})
+	//	it('Update Data From DB', done => {
+	//		assert.equal(2, 2)
+	//		done()
+	//	})
+	//	it('Delete Data From DB', done => {
+	//		assert.equal(2, 2)
+	//		done()
+	//	})
 })
