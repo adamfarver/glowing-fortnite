@@ -65,3 +65,11 @@ Single Document: Task
 		- CRUD Own Projects, Sprints, Tasks
 	- Team Member
 		- Update tasks.
+
+
+- Time
+	- id
+	- taskId
+	- amount
+	- userId
+	- date

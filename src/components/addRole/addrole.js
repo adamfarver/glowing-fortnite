@@ -3,6 +3,9 @@
  */
 
 import React, { Component } from 'react'
+import axios from 'axios'
+import api from './ThirdParty/Api'
+
 class AddRole extends Component {
 	constructor(props) {
 		super(props)
@@ -43,7 +46,16 @@ class AddRole extends Component {
 	}
 	handleSubmit(e) {
 		e.preventDefault()
-		console.log(this.state)
+		console.log(
+			`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_PORT}`
+		)
+
+		api.post(
+			`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_PORT}`,
+			this.state
+		).catch(function (err) {
+			console.log(err)
+		})
 	}
 	render() {
 		return (
