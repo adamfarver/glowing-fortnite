@@ -3,18 +3,21 @@
  */
 
 const mongoose = require('mongoose')
-const ObjectId = mongoose.Types.ObjectId
+
 module.exports = mongoose.model(
-	'project',
+	'sprint',
 	new mongoose.Schema(
 		{
-			projectName: { type: String, required: true },
+			sprint: { type: Number, required: true },
 			completed: { type: Boolean, required: false },
 			userCreated: { type: ObjectId, required: true },
 			userModified: { type: ObjectId, required: false },
-			additionalInfo: { type: String, required: false },
+			sprintType: { type: String, required: false },
 			active: { type: Boolean, required: false },
 			projectManager: { type: ObjectId, required: true },
+			dateStart: { type: Date, required: true },
+			dateEnd: { type: Date, required: true },
+			project: { type: ObjectId, required: false },
 		},
 		{ timestamps: { createdAt: 'created_at', modifiedAt: 'modified_at' } }
 	)
