@@ -7,7 +7,10 @@ import AddRole from './components/addRole/addrole'
 function App() {
 	return (
 		<>
-			<AddRole />
+			<div className="addrole">
+				<h1>Add Roles</h1>
+				<AddRole />
+			</div>
 		</>
 	)
 }
