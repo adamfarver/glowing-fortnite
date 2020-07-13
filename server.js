@@ -7,14 +7,14 @@ const express = require('express')
 // const Project = require('./models/Project')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-let { endpoint, masterKey, port } = require('./config')
+let { endpoint, masterKey, port, mongoserver } = require('./config')
 console.log(endpoint, masterKey, port)
 const Role = require('./models/Role')
 
 // Connect to MongoDB
 const dbConnect = async () => {
 	await mongoose
-		.connect(process.env.MONGO_CONNECTION_STRING, {
+		.connect(mongoserver, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 			autoIndex: false,

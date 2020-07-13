@@ -3,6 +3,7 @@
  */
 
 const mongoose = require('mongoose')
+const ObjectId = mongoose.Types.ObjectId
 
 module.exports = mongoose.model(
 	'User',
@@ -12,7 +13,7 @@ module.exports = mongoose.model(
 			lastName: { type: String, required: true },
 			email: { type: String, required: true },
 			phone: { type: String, required: true },
-			role: { type: ObjectId, required: false },
+			role: { type: ObjectId, required: true },
 		},
 		{ timestamps: { createdAt: 'created_at', modifiedAt: 'modified_at' } }
 	)
