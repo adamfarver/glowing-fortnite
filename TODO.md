@@ -32,3 +32,32 @@
 -   [ ] Task
 -   [ ] Time
 -   [x] User
+
+## API Routes
+
+### Post Routes
+
+-   [ ] Post Project
+-   [ ] Post Roles
+-   [ ] Post Sprint
+-   [ ] Post Task
+-   [ ] Post Time
+-   [ ] Post User
+
+### Update Routes
+
+-   [ ] Update Project
+-   [ ] Update Roles
+-   [ ] Update Sprint
+-   [ ] Update Task
+-   [ ] Update Time
+-   [ ] Update User
+
+### Delete Routes
+
+-   [ ] Delete Project
+-   [ ] Delete Roles
+-   [ ] Delete Sprint
+-   [ ] Delete Task
+-   [ ] Delete Time
+-   [ ] Delete User

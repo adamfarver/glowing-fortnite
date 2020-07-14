@@ -9,7 +9,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 let { endpoint, masterKey, port, mongoserver } = require('./config')
 console.log(endpoint, masterKey, port)
-const Role = require('./models/Role')
+// const Role = require('./models/Role')
+const projects = require('./routes/projects')
 
 // Connect to MongoDB
 const dbConnect = async () => {
@@ -33,15 +34,16 @@ port = port || 3001
 app.use(bodyParser.json())
 app.use(cors())
 
-app.post('/', (req, res, next) => {
-	console.log(req.body)
-	const { roleName, create, read, update } = req.body
-	const newRole = new Role({ roleName, create, read, update })
-	newRole.save()
-	res.status(200)
-	res.json({ status: 'ready' })
-	res.end()
-})
+app.use('/api', projects)
+// app.post('/', (req, res, next) => {
+// 	console.log(req.body)
+// 	const { roleName, create, read, update } = req.body
+// 	const newRole = new Role({ roleName, create, read, update })
+// 	newRole.save()
+// 	res.status(200)
+// 	res.json({ status: 'ready' })
+// 	res.end()
+// })
 
 app.listen(port, () => console.log(`Express server running on ${port}`))
 
