@@ -11,6 +11,7 @@ let { endpoint, masterKey, port, mongoserver } = require('./config')
 console.log(endpoint, masterKey, port)
 // const Role = require('./models/Role')
 const projects = require('./routes/projects')
+const users = require('./routes/users')
 
 // Connect to MongoDB
 const dbConnect = async () => {
@@ -34,7 +35,8 @@ port = port || 3001
 app.use(bodyParser.json())
 app.use(cors())
 
-app.use('/api', projects)
+app.use('/api/project', projects)
+app.use('/api/user', users)
 // app.post('/', (req, res, next) => {
 // 	console.log(req.body)
 // 	const { roleName, create, read, update } = req.body
