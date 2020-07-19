@@ -3,7 +3,7 @@
  */
 
 const mongoose = require('mongoose')
-
+const { ObjectId } = mongoose.Type
 module.exports = mongoose.model(
 	'task',
 	new mongoose.Schema(
