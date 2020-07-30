@@ -10,7 +10,8 @@ const User = require('../models/User')
 router.get('/', async (req, res, next) => {
 	try {
 		const allUsers = await User.find({})
-		res.json(allUsers).status(200)
+		res.json(allUsers)
+		res.status(200)
 		res.end()
 	} catch (error) {}
 })

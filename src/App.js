@@ -3,18 +3,16 @@
  */
 import React from 'react'
 import './App.css'
-// import AddRole from './components/addRole/addrole'
-import NewRole from './components/addRole/newRole'
-import AddUser from './components/users/AddUser'
-import newRole from './components/addRole/newRole'
-import AddProject from './components/projects/addProjects'
-import AddTask from './components/addTask/AddTask'
+
+import ViewAllUsers from './components/Users/ViewAllUsers'
+import MainNavbar from './components/Navbar/MainNavbar'
 
 function App() {
 	return (
 		<>
-			<div className="addrole">
-				<AddTask />
+			<MainNavbar />
+			<div className="allUsers">
+				<ViewAllUsers />
 			</div>
 		</>
 	)

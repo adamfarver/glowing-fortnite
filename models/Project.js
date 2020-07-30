@@ -10,11 +10,11 @@ module.exports = mongoose.model(
 		{
 			projectName: { type: String, required: false },
 			completed: { type: Boolean, required: false },
-			userCreated: { type: ObjectId, required: false },
-			userModified: { type: ObjectId, required: false },
+			// userCreated: { type: ObjectId, required: false },
+			// userModified: { type: ObjectId, required: false },
 			additionalInfo: { type: String, required: false },
 			active: { type: Boolean, required: false },
-			projectManager: { type: ObjectId, required: false },
+			// projectManager: { type: ObjectId, required: false },
 		},
 		{ timestamps: { createdAt: 'created_at', modifiedAt: 'modified_at' } }
 	)
