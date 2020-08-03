@@ -6,13 +6,15 @@ import './App.css'
 
 import ViewAllUsers from './components/Users/ViewAllUsers'
 import MainNavbar from './components/Navbar/MainNavbar'
+import AddNewProject from './components/Projects/AddNewProject'
+import Dashboard from './components/Dashboard/Dashboard'
 
 function App() {
 	return (
 		<>
 			<MainNavbar />
-			<div className="allUsers">
-				<ViewAllUsers />
+			<div className="container">
+				<Dashboard />
 			</div>
 		</>
 	)
