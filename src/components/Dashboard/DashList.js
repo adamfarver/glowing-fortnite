@@ -1,12 +1,13 @@
 import React from 'react'
 import { Card, ListGroup } from 'react-bootstrap'
 
-function DashList() {
+function DashList(props) {
+	const { name } = props
 	return (
-		<>
-			<Card style={{ width: '18rem' }}>
+		<div className={'col'}>
+			<Card className={'mb-1'}>
 				<Card.Body>
-					<Card.Title>Priority Tasks</Card.Title>
+					<Card.Title>{name}</Card.Title>
 					<ListGroup>
 						<ListGroup.Item>Item 1</ListGroup.Item>
 						<ListGroup.Item>Item 2</ListGroup.Item>
@@ -16,7 +17,7 @@ function DashList() {
 					</ListGroup>
 				</Card.Body>
 			</Card>
-		</>
+		</div>
 	)
 }
 
