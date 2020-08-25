@@ -30,14 +30,17 @@ router.get('/:id', async (req, res, next) => {
 
 // Create
 router.post('/', async (req, res, next) => {
-	try {
-		const { body } = req
-		const user = new User(body)
-		await user.save()
-		res.send('ok').status(200)
-		res.end()
-	} catch (error) {
-		console.log(error)
+	const { body } = req
+	const user = new User(body)
+	if (mongoose.connection.readyState) {
+		await user.save().then(() => {
+			res.status(200).send({ msg: 'Data Saved.' })
+			res.end()
+		})
+	} else {
+		res.status(500)
+			.send({ msg: 'Not connected to DB. Cannot Save data' })
+			.end()
 	}
 })
 
