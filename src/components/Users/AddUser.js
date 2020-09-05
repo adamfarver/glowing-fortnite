@@ -1,130 +1,84 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
-import { Container, Form, Button, Row, Col } from 'react-bootstrap'
+import { Field, Form, Formik } from 'formik'
+import * as Yup from 'yup'
 
-export default function AddUser() {
-	const { register, handleSubmit, watch, errors } = useForm()
-	const onSubmit = async function sendData(data) {
-		const config = {
-			method: 'POST', // *GET, POST, PUT, DELETE, etc.
+const validationSchema = Yup.object().shape({
+	firstName: Yup.string()
+		.max(50, 'Must have first name shorter than 50 characters.')
+		.required('required'),
+	lastName: Yup.string()
+		.max(50, 'Must have last name shorter than 50 characters.')
+		.required('required'),
+	phone: Yup.string().required('required'),
+	email: Yup.string().email().required('required'),
+})
 
-			headers: {
-				'Content-Type': 'application/json',
-				// 'Content-Type': 'application/x-www-form-urlencoded',
-			},
-			body: JSON.stringify(data), // body data type must match "Content-Type" header
-		}
-		await fetch('http://localhost:5001/api/user', config)
-			.then((response) => response.json())
-			.then((response) => console.log(response))
-	}
+export default function addNewUser() {
 	return (
-		<Container>
-			<div className="container">
-				<h1 className={'my-3'}>Add New User</h1>
-			</div>
-			<div className={'bg-light outlined p-1'}>
-				<Form onSubmit={handleSubmit(onSubmit)}>
-					<div className="container ">
-						<Form.Row className={'align-items-center my-2'}>
-							<Col sm={11}>
-								<h2 className={'text-muted '}>User Details</h2>
-							</Col>
-							<Col>
-								<Form.Check
-									type={'checkbox'}
-									label={'Active'}
-									name={'active'}
-									ref={register}
-								/>
-							</Col>
-						</Form.Row>
-						<Form.Group as={Row} controlId="name">
-							<Form.Label column sm={2}>
-								First Name
-							</Form.Label>
-							<Col>
-								<Form.Control
-									name="firstName"
-									type="text"
-									placeholder="Enter First Name"
-									ref={register({ required: true })}
-								/>
-								{errors.firstName && (
-									<p className={'text-danger'}>
-										A first name is required.
-									</p>
-								)}
-							</Col>
-							<Form.Label column sm={2}>
-								Last Name
-							</Form.Label>
-							<Col>
-								<Form.Control
-									name="lastName"
-									type="text"
-									placeholder="Enter Last Name"
-									ref={register({ required: true })}
-								/>
-								{errors.lastName && (
-									<p className={'text-danger'}>
-										A last name is required.
-									</p>
-								)}
-							</Col>
-						</Form.Group>
-						<Form.Group as={Row} controlId="contactInfo">
-							<Form.Label column sm={2}>
-								Phone
-							</Form.Label>
-							<Col>
-								<Form.Control
-									name="phone"
-									type="text"
-									placeholder="Enter Phone"
-									ref={register({ required: true })}
-								/>
-								{errors.phone && (
-									<p className={'text-danger'}>
-										A phone is required.
-									</p>
-								)}
-							</Col>
-							<Form.Label column sm={2}>
-								Email
-							</Form.Label>
-							<Col sm={4}>
-								<Form.Control
-									name="email"
-									type="text"
-									placeholder="Enter Email"
-									ref={register({ required: true })}
-								/>
-								{errors.email && (
-									<p className={'text-danger'}>
-										A email is required.
-									</p>
-								)}
-							</Col>
-						</Form.Group>
-					</div>
-
-					<div className="container">
-						<Row className={'my-3'}>
-							<Col xs="auto">
-								<Button variant="primary" type="submit">
-									Submit
-								</Button>
-							</Col>
-							<Col xs="auto">
-								<Button variant="danger	" type="reset">
-									Reset
-								</Button>
-							</Col>
-						</Row>
-					</div>
-				</Form>
-			</div>
-		</Container>
+		<div className="container mt-3">
+			<h3 className="">Add New User</h3>
+			<Formik
+				initialValues={{
+					firstName: '',
+					lastName: '',
+					email: '',
+					phone: '',
+					role: '',
+				}}
+				validationSchema={validationSchema}
+				onSubmit={(values, { setSubmitting }) => {
+					setTimeout(() => {
+						alert(JSON.stringify(values, null, 2))
+						setSubmitting(false)
+					}, 400)
+				}}
+			>
+				{({ errors, touched }) => (
+					<Form>
+						<div className="form-row ">
+							<Field
+								className="form-control col-md mx-3 mb-3"
+								name="firstName"
+								placeholder="First Name"
+							/>
+							{errors.firstName && touched.firstName ? (
+								<div>{errors.firstName}</div>
+							) : null}
+							<Field
+								className="form-control col-md mx-3 mb-3"
+								name="lastName"
+								placeholder="Last Name"
+							/>
+							{errors.lastName && touched.lastName ? (
+								<div>{errors.lastName}</div>
+							) : null}
+						</div>
+						<div className="form-row">
+							<Field
+								className="form-control col-md mx-3 mb-3"
+								name="email"
+								placeholder="Email"
+								autocomplete="email"
+							/>
+							{errors.email && touched.email ? <div>{errors.email}</div> : null}
+							<Field
+								className="form-control col-md mx-3 mb-3"
+								name="phone"
+								placeholder="Phone"
+							/>
+							{errors.phone && touched.phone ? <div>{errors.phone}</div> : null}
+						</div>
+						<div className="form-row">
+							<button className="btn btn-primary mx-3" type="submit">
+								Submit
+							</button>
+							<button className="btn btn-danger" type="reset">
+								Reset
+							</button>
+						</div>
+					</Form>
+				)}
+			</Formik>
+		</div>
 	)
 }
