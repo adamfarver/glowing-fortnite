@@ -45,114 +45,102 @@ export default function addNewProject() {
 			>
 				{({ errors, touched }) => (
 					<Form>
-						<div className="form-row ml-3">
-							<Field
-								name="projectName"
-								className="form-control col-md-8 "
-								placeholder="Project Name"
-							/>
-							{errors.projectName && touched.projectName ? (
-								<div>{errors.projectName}</div>
-							) : null}
-							<div className="col-md-4 d-flex align-items-center container">
-								<div className="form-check form-check-inline col">
-									<input
-										class="form-check-input"
-										type="checkbox"
-										id="active"
-										value="active"
-									/>
-									<label class="form-check-label" for="active">
-										Active
-									</label>
-								</div>
-								<div className="form-check form-check-inline col">
-									<input
-										class="form-check-input"
-										type="checkbox"
-										id="complete"
-										value="complete"
-									/>
-									<label class="form-check-label" for="complete">
-										Complete
-									</label>
-								</div>
+						<Field
+							name="projectName"
+							className="form-control  "
+							placeholder="Project Name"
+						/>
+						{errors.projectName && touched.projectName ? (
+							<div>{errors.projectName}</div>
+						) : null}
+						<div>
+							<div className="form-check form-check-inline col">
+								<input
+									className="form-check-input"
+									type="checkbox"
+									id="active"
+									value="active"
+								/>
+								<label className="form-check-label" htmlFor="active">
+									Active
+								</label>
+							</div>
+							<div className="form-check form-check-inline col">
+								<input
+									className="form-check-input"
+									type="checkbox"
+									id="complete"
+									value="complete"
+								/>
+								<label className="form-check-label" htmlFor="complete">
+									Complete
+								</label>
 							</div>
 						</div>
-						<div className="form-row m-3">
-							<Field
-								className="form-control"
-								name="additionalInfo"
-								placeholder="Additional Information"
-								as="textarea"
-							/>
-							{errors.additionalInfo && touched.additionalInfo ? (
-								<div>{errors.additionalInfo}</div>
-							) : null}
-						</div>
-						<h4 className="ml-3">Client Information</h4>
-						<div className="form-row ">
-							<Field
-								className="form-control col-md mx-3 mb-3"
-								name="projectOwnerFirstName"
-								placeholder="First Name"
-							/>
-							{errors.projectOwnerFirstName && touched.projectOwnerFirstName ? (
-								<div>{errors.projectOwnerFirstName}</div>
-							) : null}
-							<Field
-								className="form-control col-md mx-3 mb-3"
-								name="projectOwnerLastName"
-								placeholder="Last Name"
-							/>
-							{errors.projectOwnerLastName && touched.projectOwnerLastName ? (
-								<div>{errors.projectOwnerLastName}</div>
-							) : null}
-						</div>
-						<div className="form-row ">
-							<Field
-								className="form-control col-md  mx-3 mb-3"
-								name="ownerCompany"
-								placeholder="Company"
-							/>
-							{errors.ownerCompany && touched.ownerCompany ? (
-								<div>{errors.ownerCompany}</div>
-							) : null}
-							<Field
-								className="form-control col-md mx-3 mb-3"
-								name="ownerRole"
-								placeholder="Role"
-							/>
-							{errors.ownerCompany && touched.ownerCompany ? (
-								<div>{errors.ownerCompany}</div>
-							) : null}
-						</div>
-						<div className="form-row ">
-							<Field
-								className="form-control col-md mx-3 mb-3"
-								name="ownerPhone"
-								placeholder="Phone"
-							/>
-							{errors.ownerPhone && touched.ownerPhone ? (
-								<div>{errors.ownerPhone}</div>
-							) : null}
-							<Field
-								className="form-control col-md mx-3 mb-3"
-								name="ownerEmail"
-								placeholder="Email"
-							/>
-							{errors.ownerEmail && touched.ownerEmail ? (
-								<div>{errors.ownerEmail}</div>
-							) : null}
-						</div>
-						<div className="form-row">
-							<button className="btn btn-primary mx-3" type="submit">
-								Submit
-							</button>
-							<button className="btn btn-danger" type="reset">
-								Reset
-							</button>
-						</div>
+						<Field
+							className="form-control"
+							name="additionalInfo"
+							placeholder="Additional Information"
+							as="textarea"
+						/>
+						{errors.additionalInfo && touched.additionalInfo ? (
+							<div>{errors.additionalInfo}</div>
+						) : null}
+						<h4 className="text-muted">Client Information</h4>
+						<Field
+							className="form-control "
+							name="projectOwnerFirstName"
+							placeholder="First Name"
+						/>
+						{errors.projectOwnerFirstName && touched.projectOwnerFirstName ? (
+							<div>{errors.projectOwnerFirstName}</div>
+						) : null}
+						<Field
+							className="form-control "
+							name="projectOwnerLastName"
+							placeholder="Last Name"
+						/>
+						{errors.projectOwnerLastName && touched.projectOwnerLastName ? (
+							<div>{errors.projectOwnerLastName}</div>
+						) : null}
+						<Field
+							className="form-control"
+							name="ownerCompany"
+							placeholder="Company"
+						/>
+						{errors.ownerCompany && touched.ownerCompany ? (
+							<div>{errors.ownerCompany}</div>
+						) : null}
+						<Field
+							className="form-control "
+							name="ownerRole"
+							placeholder="Role"
+						/>
+						{errors.ownerCompany && touched.ownerCompany ? (
+							<div>{errors.ownerCompany}</div>
+						) : null}
+						<Field
+							className="form-control "
+							name="ownerPhone"
+							placeholder="Phone"
+						/>
+						{errors.ownerPhone && touched.ownerPhone ? (
+							<div>{errors.ownerPhone}</div>
+						) : null}
+						<Field
+							className="form-control "
+							name="ownerEmail"
+							placeholder="Email"
+						/>
+						{errors.ownerEmail && touched.ownerEmail ? (
+							<div>{errors.ownerEmail}</div>
+						) : null}
+						<button className="btn btn-primary " type="submit">
+							Submit
+						</button>
+						<button className="btn btn-danger" type="reset">
+							Reset
+						</button>
 					</Form>
 				)}
 			</Formik>

@@ -37,7 +37,7 @@ export default function addNewUser() {
 					<Form>
 						<div className="form-row ">
 							<Field
-								className="form-control col-md mx-3 mb-3"
+								className="form-control col-md  mb-3"
 								name="firstName"
 								placeholder="First Name"
 							/>
@@ -45,7 +45,7 @@ export default function addNewUser() {
 								<div>{errors.firstName}</div>
 							) : null}
 							<Field
-								className="form-control col-md mx-3 mb-3"
+								className="form-control col-md  mb-3"
 								name="lastName"
 								placeholder="Last Name"
 							/>
@@ -55,24 +55,37 @@ export default function addNewUser() {
 						</div>
 						<div className="form-row">
 							<Field
-								className="form-control col-md mx-3 mb-3"
+								className="form-control col-md  mb-3"
 								name="email"
 								placeholder="Email"
-								autocomplete="email"
+								autoComplete="email"
 							/>
 							{errors.email && touched.email ? <div>{errors.email}</div> : null}
 							<Field
-								className="form-control col-md mx-3 mb-3"
+								className="form-control col-md  mb-3"
 								name="phone"
 								placeholder="Phone"
 							/>
 							{errors.phone && touched.phone ? <div>{errors.phone}</div> : null}
 						</div>
 						<div className="form-row">
-							<button className="btn btn-primary mx-3" type="submit">
+							<div className="form-check form-check-inline  mb-3">
+								<input
+									className="form-check-input"
+									type="checkbox"
+									id="active"
+									value="active"
+								/>
+								<label className="form-check-label" htmlFor="active">
+									Active
+								</label>
+							</div>
+						</div>
+						<div className="form-row">
+							<button className="btn btn-primary" type="submit">
 								Submit
 							</button>
-							<button className="btn btn-danger" type="reset">
+							<button className="btn btn-danger ml-3" type="reset">
 								Reset
 							</button>
 						</div>

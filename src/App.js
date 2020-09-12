@@ -11,6 +11,10 @@ import AddUser from './components/Users/AddUser'
 import ShowAllUsers from './components/Users/ViewAllUsers'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import EditProject from './components/Projects/EditProject'
+import AddRole from './components/Roles/AddRole'
+import AddTask from './components/Tasks/AddTask'
+import AddTime from './components/Time/AddTime'
+import AddSprint from './components/Sprints/AddSprint'
 function App(props) {
 	return (
 		<Router>
@@ -28,8 +32,20 @@ function App(props) {
 				<Route path="/addproject">
 					<AddProject />
 				</Route>
+				<Route path="/addrole">
+					<AddRole />
+				</Route>
+				<Route path="/addtime">
+					<AddTime />
+				</Route>
+				<Route path="/addtask">
+					<AddTask />
+				</Route>
 				<Route path="/editproject">
 					<EditProject />
+				</Route>
+				<Route path="/addsprint">
+					<AddSprint />
 				</Route>
 			</Switch>
 		</Router>
