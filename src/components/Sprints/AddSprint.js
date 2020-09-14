@@ -44,7 +44,7 @@ export default function addNewSprint() {
 						<button className="btn btn-primary" type="submit">
 							Submit
 						</button>
-						<button className="btn btn-danger" type="reset">
+						<button className="btn btn-danger ml-3" type="reset">
 							Reset
 						</button>
 					</Form>

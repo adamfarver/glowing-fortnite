@@ -3,6 +3,7 @@ import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 
 const validationSchema = Yup.object().shape({
+	active: Yup.boolean(),
 	projectName: Yup.string()
 		.max(15, 'Must have project name shorter than 15 characters.')
 		.required('required'),
@@ -18,7 +19,7 @@ const validationSchema = Yup.object().shape({
 		.required('required'),
 	ownerPhone: Yup.string().required('required'),
 	ownerEmail: Yup.string().email().required('required'),
-	//	projectManager: Yup.string().required('required'),
+	projectManager: Yup.string().required('required'),
 })
 
 export default function addNewProject() {
@@ -27,20 +28,38 @@ export default function addNewProject() {
 			<h3 className="">Add New Project</h3>
 			<Formik
 				initialValues={{
+					active: true,
+					completed: false,
 					projectName: '',
 					projectOwnerFirstName: '',
 					projectOwnerLastName: '',
 					ownerCompany: '',
 					ownerPhone: '',
 					ownerEmail: '',
+					ownerRole: '',
 					additionalInfo: '',
+					projectManager: '',
+					teamLead: '',
 				}}
 				validationSchema={validationSchema}
 				onSubmit={(values, { setSubmitting }) => {
-					setTimeout(() => {
-						alert(JSON.stringify(values, null, 2))
-						setSubmitting(false)
-					}, 400)
+					async function postData(url = '', data = {}) {
+						// Default options are marked with *
+						const response = await fetch(url, {
+							method: 'POST', // *GET, POST, PUT, DELETE, etc.
+							headers: {
+								'Content-Type': 'application/json',
+							},
+							redirect: 'follow', // manual, *follow, error
+							body: JSON.stringify(values), // body data type must match "Content-Type" header
+						})
+						return response.json() // parses JSON response into native JavaScript objects
+					}
+
+					postData('http://REACT-', { answer: 42 }).then(data => {
+						console.log(data) // JSON data parsed by `data.json()` call
+					})
+					setSubmitting(false)
 				}}
 			>
 				{({ errors, touched }) => (
@@ -55,18 +74,18 @@ export default function addNewProject() {
 						) : null}
 						<div>
 							<div className="form-check form-check-inline col">
-								<input
+								<Field
 									className="form-check-input"
 									type="checkbox"
 									id="active"
-									value="active"
+									name="active"
 								/>
 								<label className="form-check-label" htmlFor="active">
 									Active
 								</label>
 							</div>
 							<div className="form-check form-check-inline col">
-								<input
+								<Field
 									className="form-check-input"
 									type="checkbox"
 									id="complete"
@@ -134,6 +153,22 @@ export default function addNewProject() {
 						/>
 						{errors.ownerEmail && touched.ownerEmail ? (
 							<div>{errors.ownerEmail}</div>
+						) : null}
+						<label htmlFor="projectManager">Project Manager</label>
+						<Field as="select" name="projectManager" className="form-control">
+							<option value="">Select...</option>
+							<option value="none">None</option>
+						</Field>
+						{errors.projectManager && touched.projectManager ? (
+							<div>{errors.projectManager}</div>
+						) : null}
+						<label htmlFor="teamLead">Team Lead</label>
+						<Field as="select" name="teamLead" className="form-control">
+							<option value="">Select...</option>
+							<option value="none">None</option>
+						</Field>
+						{errors.teamLead && touched.teamLead ? (
+							<div>{errors.teamLead}</div>
 						) : null}
 						<button className="btn btn-primary " type="submit">
 							Submit
